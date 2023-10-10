@@ -7,9 +7,9 @@ MAINTAINER Kaazing Docker Maintainers, contact via github issues: https://github
 #       Key fingerprint = F8F4 B66E 022A 4668 E532  DAC0 3AA0 B82C 385B 4D59
 # uid                  Kaazing build <build@kaazing.com>
 # sub   2048R/26C0219B 2015-07-01 [expires: 2017-12-08]
-RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys F8F4B66E022A4668E532DAC03AA0B82C385B4D59
+# RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys F8F4B66E022A4668E532DAC03AA0B82C385B4D59
 
-ENV KAAZING_GATEWAY_VERSION 5.1.1
+ENV KAAZING_GATEWAY_VERSION 5.6.1
 ENV KAAZING_GATEWAY_URL https://oss.sonatype.org/content/repositories/releases/org/kaazing/gateway.distribution/${KAAZING_GATEWAY_VERSION}/gateway.distribution-${KAAZING_GATEWAY_VERSION}.tar.gz
 
 # Set Working Dir
@@ -17,8 +17,6 @@ WORKDIR /kaazing-gateway
 
 # Get the latest stable version of gateway
 RUN curl -fSL -o gateway.tar.gz $KAAZING_GATEWAY_URL \
-	&& curl -fSL -o gateway.tar.gz.asc ${KAAZING_GATEWAY_URL}.asc \
-	&& gpg --verify gateway.tar.gz.asc \
 	&& tar -xvf gateway.tar.gz --strip-components=1 \
 	&& rm gateway.tar.gz*
 
